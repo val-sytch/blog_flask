@@ -1,11 +1,11 @@
 from flask import render_template
 from flask.views import MethodView
-from blog_flask.blog.database.db import WorkWithDatabase
+from blog_flask.blog.model.show_entries_model import EntryViewModel
 
 
 class EntryView(MethodView):
 
     def get(self):
-        db = WorkWithDatabase()
-        entries = db.execute_get_query('select title, content from entries order by id desc')
+        view = EntryViewModel()
+        entries = view.get_entries_from_database()
         return render_template('show_entries.html', entries=entries)

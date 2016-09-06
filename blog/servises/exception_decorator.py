@@ -2,21 +2,21 @@
 
 import functools
 import logging
+from blog_flask.blog.configurations.config import (LOGNAME, LOGFILENAME,
+                                                   LOGLEVEL, LOGFORMAT)
 
 
 def create_logger():
     """
     Creates a logging object and returns it
-
     """
 
-    logger = logging.getLogger("blog_logger")
-    logger.setLevel(logging.DEBUG)
+    logger = logging.getLogger(LOGNAME)
+    logger.setLevel(LOGLEVEL)
 
     # create the logging file handler
-    fh = logging.FileHandler("blog_logs.log")
-
-    fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    fh = logging.FileHandler(LOGFILENAME)
+    fmt = LOGFORMAT.replace('?','%')
     formatter = logging.Formatter(fmt)
     fh.setFormatter(formatter)
 
@@ -29,7 +29,6 @@ def write_bug_to_file(function):
     """
     A decorator that wraps the passed in function and logs
     exceptions
-
     """
 
     @functools.wraps(function)

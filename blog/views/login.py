@@ -3,6 +3,7 @@ from flask import (request, session, redirect,
 from flask.views import MethodView
 from blog_flask.blog.configurations.config import USERNAME, PASSWORD
 
+
 class LoginView(MethodView):
 
     def get(self, error=None):
@@ -10,10 +11,8 @@ class LoginView(MethodView):
 
     def post(self):
         error = None
-        if request.form['username'] != USERNAME:
-            error = 'Invalid username'
-        elif request.form['password'] != PASSWORD:
-            error = 'Invalid password'
+        if request.form['username'] != USERNAME or request.form['password'] != PASSWORD:
+            error = 'Invalid username/password'
         else:
             session['logged_in'] = True
             flash('You were logged in')

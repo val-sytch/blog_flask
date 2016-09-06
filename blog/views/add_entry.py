@@ -10,4 +10,5 @@ class AddEntryView(MethodView):
         db.execute_post_query('insert into entries (title, content) values (?, ?)',
                [request.form['title'], request.form['content']])
         flash('New post was successfully posted')
+        db.close_connection()
         return redirect(url_for('show_entries'))
