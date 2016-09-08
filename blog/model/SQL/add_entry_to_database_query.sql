@@ -1,0 +1,1 @@
+INSERT INTO entries (title, content) VALUES (?, ?)
