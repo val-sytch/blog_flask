@@ -1,1 +1,1 @@
-SELECT title, content FROM entries ORDER BY id DESC
+SELECT title, content, audiofile_cust, audiofile, imagefile FROM entries ORDER BY id DESC

@@ -1,6 +1,9 @@
-drop table if exists entries;
-create table entries (
-  id integer primary key autoincrement,
-  title text not null,
-  content text not null
+DROP TABLE if EXISTS entries;
+CREATE TABLE entries (
+  id INTEGER PRIMARY KEY autoincrement,
+  title text NOT NULL,
+  content text NOT NULL,
+  audiofile_cust NOT NULL,
+  audiofile text NOT NULL,
+  imagefile text NOT NULL
 );

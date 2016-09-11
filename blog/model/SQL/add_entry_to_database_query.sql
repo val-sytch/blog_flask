@@ -1,1 +1,1 @@
-INSERT INTO entries (title, content) VALUES (?, ?)
+INSERT INTO entries (title, content ,audiofile_cust, audiofile, imagefile) VALUES (?, ?, ?, ?, ?)
