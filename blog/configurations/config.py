@@ -17,7 +17,6 @@ DB_FILE_SQL = config.get('DATABASE', 'db_file_sql')
 
 STATIC_IMAGES_PATH = os.path.join(APP_ROOT_PATH, config.get('PATH','static_images'))
 STATIC_AUDIO_PATH = os.path.join(APP_ROOT_PATH, config.get('PATH','static_audio'))
-SQL_QUERIES_PATH = os.path.join(APP_ROOT_PATH, config.get('PATH','sql_queries'))
 
 LOGNAME = config.get('LOGGING', 'name')
 LOGFILENAME = config.get('LOGGING', 'filename')

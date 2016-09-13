@@ -2,10 +2,10 @@ from flask import Flask
 from configurations.config import SECRET_KEY, DEBUG
 from database.db import WorkWithDatabase
 
-app = Flask(__name__, static_url_path = '/static')
+app = Flask(__name__, static_url_path='/static')
 
 app.config.update(SECRET_KEY=SECRET_KEY,
-                  DEBUG = DEBUG)
+                  DEBUG=DEBUG)
 
 from views.show_entries import EntryView
 from views.login import LoginView

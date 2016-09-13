@@ -1,0 +1,17 @@
+# Byte-compiled
+*.pyc
+
+# Distribution / packaging
+build/
+dist/
+blog_flask.egg-info
+
+# LOG
+*.log
+
+# Temporary files
+*~
+
+# Customers' static content
+blog/static/audio/
+blog/static/images/
