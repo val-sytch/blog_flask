@@ -1,11 +1,11 @@
 import os
 from flask import request, flash
-from blog_flask.blog.database.db import WorkWithDatabase
-from blog_flask.blog.configurations.config import (STATIC_AUDIO_PATH, STATIC_IMAGES_PATH,
+from blog.database.db import WorkWithDatabase
+from blog.configurations.config import (STATIC_AUDIO_PATH, STATIC_IMAGES_PATH,
                                                    IMG_HEIGHT_REQUIR, IMG_WIDTH_REQUIR,
                                                    WATERMARK_OPACITY,WATERMARK_FILE,
                                                    SQL_QUERIES_PATH)
-from blog_flask.blog.servises.img_resizer_and_watermark_add import img_resizer_and_watermark_add
+from blog.servises.img_resizer_and_watermark_add import img_resizer_and_watermark_add
 from datetime import datetime
 from werkzeug.utils import secure_filename
 

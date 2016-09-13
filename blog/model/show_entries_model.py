@@ -1,6 +1,6 @@
 import os
-from blog_flask.blog.configurations.config import SQL_QUERIES_PATH
-from blog_flask.blog.database.db import WorkWithDatabase
+from blog.configurations.config import SQL_QUERIES_PATH
+from blog.database.db import WorkWithDatabase
 
 
 class EntryViewModel():

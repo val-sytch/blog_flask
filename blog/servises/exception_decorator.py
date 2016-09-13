@@ -2,8 +2,8 @@
 
 import functools
 import logging
-from blog_flask.blog.configurations.config import (LOGNAME, LOGFILENAME,
-                                                   LOGLEVEL, LOGFORMAT)
+from blog.configurations.config import (LOGNAME, LOGFILENAME,
+                                        LOGLEVEL, LOGFORMAT)
 
 
 def create_logger():

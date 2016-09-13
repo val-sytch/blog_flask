@@ -1,6 +1,6 @@
 import os
 import sqlite3
-from blog_flask.blog.configurations.config import DB_FILENAME, DB_FILE_SQL
+from blog.configurations.config import DB_FILENAME, DB_FILE_SQL
 
 
 class WorkWithDatabase(object):

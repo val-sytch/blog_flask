@@ -1,6 +1,6 @@
 from flask import render_template
 from flask.views import MethodView
-from blog_flask.blog.model.show_entries_model import EntryViewModel
+from blog.model.show_entries_model import EntryViewModel
 
 
 class EntryView(MethodView):

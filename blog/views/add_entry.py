@@ -1,6 +1,6 @@
 from flask import redirect, url_for
 from flask.views import MethodView
-from blog_flask.blog.model.add_entry_model import AddEntryViewModel
+from blog.model.add_entry_model import AddEntryViewModel
 
 
 class AddEntryView(MethodView):
