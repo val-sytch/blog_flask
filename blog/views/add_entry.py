@@ -1,14 +1,13 @@
-from flask import request,redirect, flash, url_for
+from flask import redirect, url_for
 from flask.views import MethodView
-from blog_flask.blog.database.db import WorkWithDatabase
+from blog.model.add_entry_model import AddEntryViewModel
 
 
 class AddEntryView(MethodView):
 
+    def __init__(self,model=AddEntryViewModel):
+        self.model = model()
+
     def post(self):
-        db = WorkWithDatabase()
-        db.execute_post_query('insert into entries (title, content) values (?, ?)',
-               [request.form['title'], request.form['content']])
-        flash('New post was successfully posted')
-        db.close_connection()
+        self.model.add_entry_to_database()
         return redirect(url_for('show_entries'))

@@ -1,7 +1,7 @@
 from flask import (request, session, redirect,
                    url_for, render_template, flash)
 from flask.views import MethodView
-from blog_flask.blog.configurations.config import USERNAME, PASSWORD
+from blog.configurations.config import USERNAME, PASSWORD
 
 
 class LoginView(MethodView):
