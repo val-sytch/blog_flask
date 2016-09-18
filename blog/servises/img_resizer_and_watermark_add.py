@@ -64,12 +64,13 @@ def compare_width_height(width, height, image_width, image_height):
 
 def put_watermark(resized_img_on_transp_layer, watermark, opacity, checked_img_size):
     """
-    Check if file with watermark is exists. Then adds a watermark image to the input picture.
+    Check if file with watermark is exists and in right format.
+    Then adds a watermark image to the input picture.
     Else returns image without changing
     """
     if not os.path.isfile(watermark):
         return resized_img_on_transp_layer
-    else:
+    elif watermark.rsplit('.', 1)[1] == ('png', 'PNG'):
         watermark = Image.open(watermark)
         if watermark.mode != 'RGBA':
             watermark = watermark.convert('RGBA')
@@ -80,7 +81,7 @@ def put_watermark(resized_img_on_transp_layer, watermark, opacity, checked_img_s
         image = resized_img_on_transp_layer
         if image.mode != 'RGBA':
             image = image.convert('RGBA')
-        # use compare_width_height() to but watermark only on image, avoiding transparent space
+        # use compare_width_height() to put watermark only on image, avoiding transparent space
         checked_watermark_size = compare_width_height(checked_img_size[0], checked_img_size[1],
                                                       watermark.size[0], watermark.size[1])
         watermark = watermark.resize(checked_watermark_size)
@@ -89,3 +90,5 @@ def put_watermark(resized_img_on_transp_layer, watermark, opacity, checked_img_s
         layer.paste(watermark, position)
         resized_img_with_watermark = Image.composite(layer, image, layer)
         return resized_img_with_watermark
+    else:
+        return resized_img_on_transp_layer
