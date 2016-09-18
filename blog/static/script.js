@@ -14,7 +14,8 @@ function ValidateAudioSingleInput(oInput) {
             }
 
             if (!blnValid) {
-                alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validAudioFileExtensions.join(", "));
+                
+                runPopup("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validAudioFileExtensions.join(", "));
                 oInput.value = "";
                 return false;
             }
@@ -37,11 +38,37 @@ function ValidateImageSingleInput(oInput) {
             }
 
             if (!blnValid) {
-                alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validImageFileExtensions.join(", "));
+                runPopup("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validImageFileExtensions.join(", "));
                 oInput.value = "";
                 return false;
             }
         }
     }
     return true;
+}
+
+document.addEventListener('DOMContentLoaded', ready);
+
+function ready(){
+    document.addEventListener('click', function(event){
+        if(event.target.classList.contains('close-popup')){
+            closePopup(event.target);
+        }
+    });
+}
+
+function closePopup(el){
+    var parent = el;
+    while(parent.getAttribute('id') != 'popup'){
+        parent = parent.parentNode;
+    }
+    parent.classList.add('hide');
+    parent.querySelector('.popup').classList.remove('fade');
+}
+
+function runPopup(msg){
+    var popup = document.getElementById('popup');
+    popup.querySelector('.popup-msg').innerText = msg;
+    popup.classList.remove('hide');
+    popup.querySelector('.popup').classList.add('fade-in');
 }
