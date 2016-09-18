@@ -2,7 +2,7 @@
 {% block body %}
 {% if session.logged_in %}
 <form action="{{ url_for('add_entry') }}" method="post" class="add-entry" enctype="multipart/form-data">
-    <h2>Add post</h2>
+    <!-- <h2>Add post</h2> -->
     <div>
         <label for="title">
             <span>Title:</span>
@@ -32,7 +32,7 @@
 </form>
 {% endif %}
 <ul class="entries">
-    <h2>Posted posts</h2>
+    <!-- <h2>Posted posts</h2> -->
     {% for entry in entries %}
         <li>
             {% if entry.imagefile != 'empty' %}
@@ -40,16 +40,20 @@
                     <img src="/static/images/{{entry.imagefile}}">
                 </div>
             {% endif %}
-            <p class="title">{{ entry.title }}</p>
-            <p class="msg">{{ entry.content|safe }}</p>
-            {% if entry.audiofile != 'empty' %}
-            <p class="msg">{{ entry.audiofile_cust}}</p>
-                <div class="audio">
-                    <audio controls>
-             <source src="/static/audio/{{entry.audiofile}}" type="audio/mpeg">
-                    </audio>
+            <div class="travelling clearfix">
+                <div class="col-md-10 travelling1">
+                    <h1>{{ entry.title }}</h1>
+                    <p class="msg">{{ entry.content|safe }}</p>
+                    {% if entry.audiofile != 'empty' %}
+                        <p class="msg">{{ entry.audiofile_cust}}</p>
+                        <div class="audio">
+                            <audio controls>
+                                <source src="/static/audio/{{entry.audiofile}}" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+            </div>
             {% else %}
                 <em>Unbelievable. No entries here so far</em>
         </li>

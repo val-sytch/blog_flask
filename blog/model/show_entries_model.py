@@ -1,16 +1,13 @@
-import os
-from blog.configurations.config import SQL_QUERIES_PATH
 from blog.database.db import WorkWithDatabase
+from blog.model.SQL.get_entries_from_database_query import get_query
 
 
-class EntryViewModel():
+class EntryViewModel:
 
-    def __init__(self,db = WorkWithDatabase):
+    def __init__(self, db=WorkWithDatabase):
         self.db = db()
 
     def get_entries_from_database(self):
-        query_path = os.path.join(SQL_QUERIES_PATH, 'get_entries_from_database_query.sql')
-        query = open(query_path,mode='r').read()
-        entries = self.db.execute_get_query(query)
+        entries = self.db.execute_get_query(get_query)
         self.db.close_connection()
         return entries
