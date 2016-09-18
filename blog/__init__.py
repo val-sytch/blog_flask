@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from configurations.config import SECRET_KEY, DEBUG
 from database.db import WorkWithDatabase
@@ -25,4 +26,5 @@ app.add_url_rule('/add_entry',
 
 # create db file if it isn't exist
 db_obj = WorkWithDatabase()
-db_obj.create_db_file_if_none()
+if not os.path.isfile(db_obj.db_file):
+    db_obj.create_db_file_if_none()
