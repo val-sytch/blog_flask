@@ -1,11 +1,11 @@
-import os
 import sqlite3
-from blog.configurations.config import DB_FILENAME, DB_FILE_SQL
+from blog.configurations.config import DB_FILE, DB_FILE_SQL
 
 
 class WorkWithDatabase(object):
     connection_obj = None
-    DATABASE = os.path.join(os.path.dirname(__file__), DB_FILENAME)
+    db_file = DB_FILE
+    db_file_sql = DB_FILE_SQL
 
     def _create_connection(self):
         """
@@ -20,7 +20,7 @@ class WorkWithDatabase(object):
          Row provides both index-based and case-insensitive name-based access to columns
          with almost no memory overhead.
         """
-        self.connection_obj = sqlite3.connect(self.DATABASE)
+        self.connection_obj = sqlite3.connect(self.db_file)
         self.connection_obj.row_factory = sqlite3.Row
         return self.connection_obj
 
@@ -49,11 +49,9 @@ class WorkWithDatabase(object):
 
     def create_db_file_if_none(self):
         """
-        Check if db file is exists, if not, create it.
+        Create database
         """
-        if not os.path.isfile(self.DATABASE):
-            self.connection_obj = sqlite3.connect(self.DATABASE)
-            path_to_create_db_sql = os.path.join(os.path.dirname(__file__), DB_FILE_SQL)
-            create_db_sql = open(path_to_create_db_sql, mode='r').read()
-            self.connection_obj.executescript(create_db_sql)
-            self.close_connection()
+        self.connection_obj = sqlite3.connect(self.db_file)
+        create_db_sql = open(self.db_file_sql, mode='r').read()
+        self.connection_obj.executescript(create_db_sql)
+        self.close_connection()
