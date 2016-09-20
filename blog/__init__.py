@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from configurations.config import SECRET_KEY, DEBUG
+from configurations.config import SECRET_KEY, DEBUG, STATIC_AUDIO_PATH
 from database.db import WorkWithDatabase
 
 app = Flask(__name__, static_url_path='/static')
@@ -22,9 +22,13 @@ app.add_url_rule('/login',
 app.add_url_rule('/logout',
                  view_func=write_bug_to_file(LogoutView.as_view("logout")), methods=['GET'])
 app.add_url_rule('/add_entry',
-                 view_func=write_bug_to_file(AddEntryView.as_view("add_entry")), methods=['POST'])
+                 view_func=write_bug_to_file(AddEntryView.as_view("add_entry")), methods=['GET','POST'])
 
 # create db file if it isn't exist
 db_obj = WorkWithDatabase()
 if not os.path.isfile(db_obj.db_file):
     db_obj.create_db_file_if_none()
+
+# create folder for storing audio files
+if not os.path.exists(STATIC_AUDIO_PATH):
+    os.makedirs(STATIC_AUDIO_PATH)
