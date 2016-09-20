@@ -307,11 +307,12 @@ i.aeroplane{
 	padding:20px 10px;
 }
 .travelling1 p{
-	font-size:1.3em;
+	font-size:1.1em;
 	font-weight:400;
 	color:#7D7D7D;
 	font-family: 'Open Sans', sans-serif;
 	margin: 1em 0em 2em;
+	line-height: normal;
 }
 .travelling2  a{
 	font-size:1.3em;
