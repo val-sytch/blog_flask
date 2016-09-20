@@ -47,7 +47,7 @@ class CompareWidthHeightTestCase(unittest.TestCase):
         """
         1. Check that function do nothing if file with watermark is absent
         2. Check if watermark file is in unsupported format
-        3. Check if you pass to function opacity that is in wrong format
+
         """
         # 1
         tmp_file = os.path.join(os.path.dirname(__file__), "image.jpg")
@@ -58,10 +58,7 @@ class CompareWidthHeightTestCase(unittest.TestCase):
         watermark = os.path.join(os.path.dirname(__file__), "watermark1.jpg")
         result = put_watermark(tmp_file, watermark, 0.2, (300, 200))
         self.assertEqual(tmp_file, result)
-        # 3
-        watermark = os.path.join(os.path.dirname(__file__), "watermark1.png")
-        result = put_watermark(tmp_file, watermark, 1.2, (300, 200))
-        self.assertRaises(Exception)
+
 
 if __name__ == '__main__':
     unittest.main()

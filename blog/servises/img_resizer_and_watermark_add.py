@@ -70,7 +70,7 @@ def put_watermark(resized_img_on_transp_layer, watermark, opacity, checked_img_s
     """
     if not os.path.isfile(watermark):
         return resized_img_on_transp_layer
-    elif watermark.rsplit('.', 1)[1] == ('png', 'PNG'):
+    elif watermark.rsplit('.', 1)[1] == 'png' or watermark.rsplit('.', 1)[1] == 'PNG':
         watermark = Image.open(watermark)
         if watermark.mode != 'RGBA':
             watermark = watermark.convert('RGBA')
