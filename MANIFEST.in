@@ -3,4 +3,6 @@ recursive-include blog/database *.sql
 recursive-include blog/templates *.html
 recursive-include blog/static *.js *.css logo.png banner.jpg
 recursive-include blog/static/images/watermark *.png
-exclude *.log
+recursive-exclude blog/tests *.py
+exclude *.pyc
+exclude  fabfile.py
