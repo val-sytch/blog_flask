@@ -87,11 +87,14 @@ textarea{
 	width: 100%;
 	max-width: 300px;
 	display: block;
-	margin: auto;
+	margin: 0;
 	text-transform: uppercase;
 }
 .audio{
 	margin: 0 0 15px;
+}
+.error{
+    font-weight: 700;
 }
 
 
