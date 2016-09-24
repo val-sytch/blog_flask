@@ -249,6 +249,9 @@ body a{
 	color: #fff;
 	text-transform: capitalize;
 }
+.metanav{
+    text-align: right;
+}
 i.aeroplane{
 	width: 100px;
     height: 100px;
