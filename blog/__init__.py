@@ -18,11 +18,11 @@ from servises.exception_decorator import write_bug_to_file
 app.add_url_rule('/',
                  view_func=write_bug_to_file(EntryView.as_view("show_entries")), methods=['GET'])
 app.add_url_rule('/login',
-                 view_func=write_bug_to_file(LoginView.as_view("login")), methods=['GET','POST'])
+                 view_func=write_bug_to_file(LoginView.as_view("login")), methods=['GET', 'POST'])
 app.add_url_rule('/logout',
                  view_func=write_bug_to_file(LogoutView.as_view("logout")), methods=['GET'])
 app.add_url_rule('/add_entry',
-                 view_func=write_bug_to_file(AddEntryView.as_view("add_entry")), methods=['GET','POST'])
+                 view_func=write_bug_to_file(AddEntryView.as_view("add_entry")), methods=['GET', 'POST'])
 
 # create db file if it isn't exist
 db_obj = WorkWithDatabase()

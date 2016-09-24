@@ -24,7 +24,7 @@ class WorkWithDatabase(object):
         self.connection_obj.row_factory = sqlite3.Row
         return self.connection_obj
 
-    def execute_get_query(self,query):
+    def execute_get_query(self, query):
         """
         Execute GET query.
         """
@@ -33,12 +33,12 @@ class WorkWithDatabase(object):
         entries = cursor_obj.fetchall()
         return entries
 
-    def execute_post_query(self,query,param):
+    def execute_post_query(self, query, param):
         """
         Execute POST query
         """
         self._create_connection()
-        self.connection_obj.execute(query,param)
+        self.connection_obj.execute(query, param)
         self.connection_obj.commit()
 
     def close_connection(self):

@@ -1,11 +1,11 @@
-from flask import redirect,render_template, url_for
+from flask import redirect, render_template, url_for
 from flask.views import MethodView
 from blog.model.add_entry_model import AddEntryViewModel
 
 
 class AddEntryView(MethodView):
 
-    def __init__(self,model=AddEntryViewModel):
+    def __init__(self, model=AddEntryViewModel):
         self.model = model()
 
     def get(self):

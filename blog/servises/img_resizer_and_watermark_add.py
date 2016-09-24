@@ -29,11 +29,9 @@ def image_resize(image_uploaded, width, height):
     """
     image = Image.open(image_uploaded).convert('RGBA')
     image_width, image_height = image.size
-    
     checked_img_size = compare_width_height(width, height, image_width, image_height)
     image_width, image_height = checked_img_size
-    
-    resized_img_on_transp_layer = Image.new('RGBA', (width, height), (0,0,0,0))
+    resized_img_on_transp_layer = Image.new('RGBA', (width, height), (0, 0, 0, 0))
     resized_image = image.resize((int(image_width), int(image_height)))
     position = (int((width - image_width)/2), int((height - image_height)/2))
     resized_img_on_transp_layer.paste(resized_image, position)
@@ -85,7 +83,7 @@ def put_watermark(resized_img_on_transp_layer, watermark, opacity, checked_img_s
         checked_watermark_size = compare_width_height(checked_img_size[0], checked_img_size[1],
                                                       watermark.size[0], watermark.size[1])
         watermark = watermark.resize(checked_watermark_size)
-        layer = Image.new('RGBA', image.size, (0,0,0,0))
+        layer = Image.new('RGBA', image.size, (0, 0, 0, 0))
         position = (int((image.size[0]-watermark.size[0])/2), int((image.size[1]-watermark.size[1])/2))
         layer.paste(watermark, position)
         resized_img_with_watermark = Image.composite(layer, image, layer)

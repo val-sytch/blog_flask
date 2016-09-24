@@ -16,7 +16,7 @@ def create_logger():
 
     # create the logging file handler
     fh = logging.FileHandler(LOGFILENAME)
-    fmt = LOGFORMAT.replace('?','%')
+    fmt = LOGFORMAT.replace('?', '%')
     formatter = logging.Formatter(fmt)
     fh.setFormatter(formatter)
 
