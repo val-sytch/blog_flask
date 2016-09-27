@@ -26,6 +26,9 @@ body {
 	line-height: 1;
 	font-family: 'Open Sans', sans-serif;
 }
+img {
+    max-width: 100%;
+}
 ol, ul {
 	list-style: none;
 }
@@ -87,11 +90,14 @@ textarea{
 	width: 100%;
 	max-width: 300px;
 	display: block;
-	margin: auto;
+	margin: 0;
 	text-transform: uppercase;
 }
 .audio{
 	margin: 0 0 15px;
+}
+.error{
+    font-weight: 700;
 }
 
 
@@ -249,6 +255,9 @@ body a{
 	color: #fff;
 	text-transform: capitalize;
 }
+.metanav{
+    text-align: right;
+}
 i.aeroplane{
 	width: 100px;
     height: 100px;
@@ -314,6 +323,9 @@ i.aeroplane{
 	margin: 1em 0em 2em;
 	line-height: normal;
 }
+p.audio-title{
+	font-size: 1em;
+}
 .travelling2  a{
 	font-size:1.3em;
 	font-weight:400;
@@ -342,6 +354,9 @@ i.aeroplane{
 	-msborder-radius:3px;
 	margin: 0.5em 1em;
 	border: 0;
+}
+.footer{
+	padding: 0 0 30px;
 }
 .footer p{
 	color:#696A6A;

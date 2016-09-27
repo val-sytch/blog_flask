@@ -19,15 +19,12 @@ class WorkWithDatabaseTestCase(unittest.TestCase):
         self.db_obj.db_file = self.db_temp_file
         # create db in temporary file
         self.db_obj.create_db_file_if_none()
-        # set this to None because after creation connection was closed
-        self.db_obj.connection_obj = None
 
     def tearDown(self):
-        self.db_obj.close_connection()
         os.remove(self.db_temp_file)
 
     def test_db_methods_and_queries_syntax(self):
-        test_param_for_query = ['title blog', 'text blog','audiofile name',
+        test_param_for_query = ['title blog', 'text blog', 'audiofile name',
                                 'another audiofile name', 'imagefile name']
         self.db_obj.execute_post_query(insert_query, test_param_for_query)
         data_from_temp_db = self.db_obj.execute_get_query(get_query)
