@@ -1,5 +1,5 @@
-import blog
 import unittest
+import blog
 
 
 class RoutingStartpageTestCase(unittest.TestCase):

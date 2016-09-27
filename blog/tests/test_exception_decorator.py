@@ -1,20 +1,25 @@
 import os
 import unittest
 from mock import Mock
-from blog.servises.exception_decorator import write_bug_to_file
+from blog.servises.logger_decorator import write_error_to_file
 from blog.configurations.config import LOGFILENAME
 
 
 class LoggerWorkAbilityTestCase(unittest.TestCase):
 
-    blog_logs_file = os.path.join(os.path.dirname(__file__), LOGFILENAME)
+    def setUp(self):
+        """
+        remove file with logs before each test, if it's exists
+        """
+        if os.path.isfile(LOGFILENAME):
+            os.remove(LOGFILENAME)
 
     def tearDown(self):
         """
         remove file with logs after each test, if it's exists
         """
-        if os.path.isfile(self.blog_logs_file):
-            os.remove(self.blog_logs_file)
+        if os.path.isfile(LOGFILENAME):
+            os.remove(LOGFILENAME)
 
     def test_write_to_bug_file_if_good(self):
         """
@@ -22,12 +27,12 @@ class LoggerWorkAbilityTestCase(unittest.TestCase):
         """
         mock = Mock(return_value=3)
 
-        @write_bug_to_file
+        @write_error_to_file
         def everything_works_without_exceptions():
             mock()
 
         everything_works_without_exceptions()
-        self.assertFalse(os.path.isfile(self.blog_logs_file))
+        self.assertFalse(os.path.isfile(LOGFILENAME))
 
     def test_write_bug_to_file_if_exception(self):
         """
@@ -36,14 +41,14 @@ class LoggerWorkAbilityTestCase(unittest.TestCase):
 
         mock = Mock(side_effect=KeyError)
 
-        @write_bug_to_file
+        @write_error_to_file
         def error_raising():
             mock()
 
         error_raising()
-
-        self.assertTrue(os.path.isfile(self.blog_logs_file))
-        data_in_log_file = open(self.blog_logs_file, mode="r").read()
+        self.assertRaises(KeyError)
+        self.assertTrue(os.path.isfile(LOGFILENAME))
+        data_in_log_file = open(LOGFILENAME, mode="r").read()
         self.assertIn('There was an exception in  error_raising', data_in_log_file)
         self.assertIn('Traceback', data_in_log_file)
         self.assertIn('KeyError', data_in_log_file)

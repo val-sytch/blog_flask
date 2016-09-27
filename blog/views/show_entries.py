@@ -5,7 +5,7 @@ from blog.model.show_entries_model import EntryViewModel
 
 class EntryView(MethodView):
 
-    def __init__(self,model=EntryViewModel):
+    def __init__(self, model=EntryViewModel):
         self.model = model()
 
     def get(self):

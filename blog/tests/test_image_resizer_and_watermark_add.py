@@ -1,6 +1,6 @@
 import os
 import unittest
-from blog.servises.img_resizer_and_watermark_add import compare_width_height, image_resize, put_watermark
+from blog.servises.img_resizer_and_watermark_add import _compare_width_height, _image_resize, _put_watermark
 
 
 class CompareWidthHeightTestCase(unittest.TestCase):
@@ -12,23 +12,23 @@ class CompareWidthHeightTestCase(unittest.TestCase):
         required_width = 400
         required_height = 300
 
-        result = compare_width_height(required_width, required_height, 1200, 600)
+        result = _compare_width_height(required_width, required_height, 1200, 600)
         self.assertEqual(result[0], 400)
         self.assertLess(result[1], 300)
 
-        result = compare_width_height(required_width, required_height, 600, 1200)
+        result = _compare_width_height(required_width, required_height, 600, 1200)
         self.assertLess(result[0], 400)
         self.assertEqual(result[1], 300)
 
-        result = compare_width_height(required_width, required_height, 500, 200)
+        result = _compare_width_height(required_width, required_height, 500, 200)
         self.assertEqual(result[0], 400)
         self.assertLess(result[1], 200)
 
-        result = compare_width_height(required_width, required_height, 200, 500)
+        result = _compare_width_height(required_width, required_height, 200, 500)
         self.assertLess(result[0], 200)
         self.assertEqual(result[1], 300)
 
-        result = compare_width_height(required_width, required_height, 300, 200)
+        result = _compare_width_height(required_width, required_height, 300, 200)
         self.assertEqual(result, (300, 200))
 
     def test_image_resize(self):
@@ -39,7 +39,7 @@ class CompareWidthHeightTestCase(unittest.TestCase):
         Comment: Maybe I should use mock obj instead real file, I swear, I tried, but not succeed.
         """
         tmp_file = os.path.join(os.path.dirname(__file__), "image.jpg")
-        result = image_resize(tmp_file, 400, 300)
+        result = _image_resize(tmp_file, 400, 300)
         self.assertEqual(result[0].mode, "RGBA")
         self.assertEqual(type(result[1]), tuple)
 
@@ -52,11 +52,11 @@ class CompareWidthHeightTestCase(unittest.TestCase):
         # 1
         tmp_file = os.path.join(os.path.dirname(__file__), "image.jpg")
         watermark = os.path.join(os.path.dirname(__file__), "notexists_file.jpg")
-        result = put_watermark(tmp_file, watermark, 0.2, (300, 200))
+        result = _put_watermark(tmp_file, watermark, 0.2, (300, 200))
         self.assertEqual(tmp_file, result)
         # 2
         watermark = os.path.join(os.path.dirname(__file__), "watermark1.jpg")
-        result = put_watermark(tmp_file, watermark, 0.2, (300, 200))
+        result = _put_watermark(tmp_file, watermark, 0.2, (300, 200))
         self.assertEqual(tmp_file, result)
 
 

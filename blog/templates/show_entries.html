@@ -1,36 +1,5 @@
 {% extends "layout.html" %}
 {% block body %}
-{% if session.logged_in %}
-<form action="{{ url_for('add_entry') }}" method="post" class="add-entry" enctype="multipart/form-data">
-    <!-- <h2>Add post</h2> -->
-    <div>
-        <label for="title">
-            <span>Title:</span>
-            <input type="text" size="30" name="title" id="title">
-        </label>
-    </div>
-    <div>
-        <label for="text">
-            <span>Text:</span>
-            <textarea name="content" rows="5" cols="40" id="text"></textarea>
-        </label>
-    </div>
-    <div>
-        <label for="audio">
-            <span>Attach audiofile:</span>
-            <input type="file" name="audiofile" value="empty" id="audio" onchange="ValidateAudioSingleInput(this);">
-        </label>
-    </div>
-    <div>
-        <label for="img">
-            <span>Attach image:</span>
-            <input type="file" name="imagefile" id="img" onchange="ValidateImageSingleInput(this);">
-        </label>
-    </div>
-    <input type="submit" value="Post it">
-</form>
-</form>
-{% endif %}
 <ul class="entries">
     <!-- <h2>Posted posts</h2> -->
     {% for entry in entries %}
@@ -45,7 +14,7 @@
                     <h1>{{ entry.title }}</h1>
                     <p class="msg">{{ entry.content|safe }}</p>
                     {% if entry.audiofile != 'empty' %}
-                        <p class="msg">{{ entry.audiofile_cust}}</p>
+                        <p class="audio-title">{{ entry.audiofile_cust}}</p>
                         <div class="audio">
                             <audio controls>
                                 <source src="/static/audio/{{entry.audiofile}}" type="audio/mpeg">

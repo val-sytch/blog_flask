@@ -24,24 +24,28 @@ class WorkWithDatabase(object):
         self.connection_obj.row_factory = sqlite3.Row
         return self.connection_obj
 
-    def execute_get_query(self,query):
+    def execute_get_query(self, query):
         """
         Execute GET query.
         """
         self._create_connection()
         cursor_obj = self.connection_obj.execute(query)
         entries = cursor_obj.fetchall()
+        self._close_connection()
+        self.connection_obj = None
         return entries
 
-    def execute_post_query(self,query,param):
+    def execute_post_query(self, query, param):
         """
         Execute POST query
         """
         self._create_connection()
-        self.connection_obj.execute(query,param)
+        self.connection_obj.execute(query, param)
         self.connection_obj.commit()
+        self._close_connection()
+        self.connection_obj = None
 
-    def close_connection(self):
+    def _close_connection(self):
         """
          Close connection to database
         """
@@ -54,4 +58,5 @@ class WorkWithDatabase(object):
         self.connection_obj = sqlite3.connect(self.db_file)
         create_db_sql = open(self.db_file_sql, mode='r').read()
         self.connection_obj.executescript(create_db_sql)
-        self.close_connection()
+        self._close_connection()
+        self.connection_obj = None

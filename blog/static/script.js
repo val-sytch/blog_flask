@@ -55,6 +55,7 @@ function ready(){
             closePopup(event.target);
         }
     });
+    jQuery( 'audio' ).audioPlayer();
 }
 
 function closePopup(el){
