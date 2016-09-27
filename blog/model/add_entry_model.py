@@ -23,7 +23,7 @@ class AddEntryViewModel(object):
         new_audiofilename = 'empty'
         new_imagefilename = 'empty'
         if audiofile:
-            audiofilename = secure_filename(audiofile.filename)
+            audiofilename = audiofile.filename
             new_audiofilename = 'audio' + timestamp + '.' + audiofilename.rsplit('.', 1)[1]
             audiofile.save(os.path.join(STATIC_AUDIO_PATH, new_audiofilename))
         if imagefile:
@@ -33,5 +33,4 @@ class AddEntryViewModel(object):
             imagefile_edited.save(os.path.join(STATIC_IMAGES_PATH, new_imagefilename), 'PNG')
         param = [request.form['title'], request.form['content'], audiofilename, new_audiofilename, new_imagefilename]
         self.db.execute_post_query(insert_query, param)
-        self.db.close_connection()
         return flash('New post was successfully posted')

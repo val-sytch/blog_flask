@@ -19,7 +19,7 @@ STATIC_IMAGES_PATH = os.path.join(APP_ROOT_PATH, config.get('PATH', 'static_imag
 STATIC_AUDIO_PATH = os.path.join(APP_ROOT_PATH, config.get('PATH', 'static_audio'))
 
 LOGNAME = config.get('LOGGING', 'name')
-LOGFILENAME = config.get('LOGGING', 'filename')
+LOGFILENAME = os.path.join(APP_ROOT_PATH, config.get('LOGGING', 'filename'))
 LOGLEVEL = config.get('LOGGING', 'level')
 LOGFORMAT = config.get('LOGGING', 'format')
 

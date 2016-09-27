@@ -9,5 +9,4 @@ class EntryViewModel(object):
 
     def get_entries_from_database(self):
         entries = self.db.execute_get_query(get_query)
-        self.db.close_connection()
         return entries

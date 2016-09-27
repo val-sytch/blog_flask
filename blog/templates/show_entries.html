@@ -14,7 +14,7 @@
                     <h1>{{ entry.title }}</h1>
                     <p class="msg">{{ entry.content|safe }}</p>
                     {% if entry.audiofile != 'empty' %}
-                        <p class="msg">{{ entry.audiofile_cust}}</p>
+                        <p class="audio-title">{{ entry.audiofile_cust}}</p>
                         <div class="audio">
                             <audio controls>
                                 <source src="/static/audio/{{entry.audiofile}}" type="audio/mpeg">
